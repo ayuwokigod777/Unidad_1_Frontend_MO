@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportClub – Tu mejor versión comienza hoy</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* navegacion */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: var(--primary);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-mark {
+      width: 34px; height: 34px;
+      background: var(--accent);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem; color: var(--primary);
+    }
+    .nav-logo-name { font-size: 1rem; font-weight: 700; color: white; }
+    .nav-cta { display: flex; gap: 10px; }
+
+    /* seccion hero */
+    .hero {
+      background: var(--primary);
+      color: white;
+      padding: 80px 48px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    .hero-cta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+    /* secciones  */
+    section { padding: 64px 48px; max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+    .section-heading {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .section-desc {
+      font-size: 0.92rem;
+      color: var(--gray);
+      line-height: 1.75;
+      max-width: 540px;
+    }
+
+    /* sobre nosotros */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .about-img {
+      background: var(--primary);
+      border-radius: var(--radius);
+      aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+    }
+    .about-text { display: flex; flex-direction: column; gap: 14px; }
+    .about-text p { font-size: 0.92rem; color: var(--gray); line-height: 1.75; }
+
+    /* beneficios */
+    .benefits-bg { background: var(--white); }
+    .benefits-inner { max-width: 1100px; margin: 0 auto; padding: 64px 48px; }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .benefit-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 24px;
+    }
+    .benefit-icon { font-size: 1.6rem; margin-bottom: 12px; }
+    .benefit-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .benefit-desc { font-size: 0.84rem; color: var(--gray); line-height: 1.65; }
+
+    /* vision */
+    .vision-bg { background: var(--primary); }
+    .vision-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 64px 48px;
+      text-align: center;
+    }
+    .vision-inner .section-label { color: var(--accent); }
+    .vision-inner .section-heading { color: white; }
+    .vision-inner p { font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 16px 0 28px; max-width: 100%; }
+
+    /* el footer */
+    footer {
+      background: #1c0f2e;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 28px;
+      font-size: 0.82rem;
+    }
+    footer span { color: var(--accent); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-logo-mark">SC</div>
+      <span class="nav-logo-name">SportClub</span>
+    </div>
+    <div class="nav-cta">
+      <a href="login.html" class="btn btn-white" style="padding:9px 20px;font-size:0.85rem;">Iniciar sesión</a>
+      <a href="registro.html" class="btn btn-primary" style="padding:9px 20px;font-size:0.85rem;">Registrarse</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Tu mejor versión<br><span>comienza hoy</span></h1>
+    <p>En SportClub creemos que el deporte transforma el cuerpo, la mente y el estilo de vida. Somos una comunidad enfocada en el bienestar y la superación personal.</p>
+    <div class="hero-cta">
+      <a href="registro.html" class="btn btn-primary">Únete ahora</a>
+      <a href="#nosotros" class="btn btn-white" style="opacity:0.85;">Conoce más</a>
+    </div>
+  </div>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros">
+    <div class="about-grid">
+      <div class="about-img">🏅</div>
+      <div class="about-text">
+        <div class="section-label">Quiénes somos</div>
+        <h2 class="section-heading">Más que un club,<br>una comunidad</h2>
+        <p>Acompañamos a cada persona en su proceso de transformación, sin importar su nivel o experiencia. Contamos con entrenadores especializados, programas personalizados y un ambiente que motiva a dar lo mejor en cada sesión.</p>
+        <p>En SportClub no solo vienes a entrenar… vienes a <strong>crecer, superarte y construir tu mejor versión.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <div class="benefits-bg" id="beneficios">
+    <div class="benefits-inner">
+      <div class="section-label">Por qué elegirnos</div>
+      <h2 class="section-heading">Beneficios del entrenamiento</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-title">Programas personalizados</div>
+          <p class="benefit-desc">Cada miembro tiene un plan diseñado según sus objetivos y nivel físico.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🏆</div>
+          <div class="benefit-title">Entrenadores certificados</div>
+          <p class="benefit-desc">Nuestro equipo de coaches tiene experiencia real y certificaciones internacionales.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📅</div>
+          <div class="benefit-title">Reservas online</div>
+          <p class="benefit-desc">Gestiona tus clases y horarios desde cualquier dispositivo, cuando quieras.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🌟</div>
+          <div class="benefit-title">Ambiente motivador</div>
+          <p class="benefit-desc">Instalaciones modernas y una comunidad que te impulsa a superar tus límites.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🔄</div>
+          <div class="benefit-title">Variedad de disciplinas</div>
+          <p class="benefit-desc">Crossfit, Yoga, Spinning, Funcional y más. Siempre hay algo nuevo para desafiarte.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📊</div>
+          <div class="benefit-title">Seguimiento de progreso</div>
+          <p class="benefit-desc">Monitorea tu evolución y mantén el control de tus metas cada semana.</p>
+        </div>
+      </div>
+    </div>
+  </

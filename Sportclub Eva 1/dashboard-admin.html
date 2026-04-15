@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportClub – Administrador</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .sidebar { background: #7C2D12; }
+    .main    { background: #c5b7b7; }
+  </style>
+</head>
+<body>
+
+  <div class="dash-wrapper">
+
+    <!-- barra lateral -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="sidebar-logo-name">SportClub</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#" class="active">Inicio</a></li>
+          <li><a href="#usuarios">Usuarios</a></li>
+          <li><a href="#reportes">Reportes</a></li>
+          <li><a href="#configuracion">Configuración</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          
+          <div>
+            <div class="sidebar-name">Admin SportClub</div>
+            <div class="sidebar-role">Administrador</div>
+          </div>
+        </div>
+        <a href="login.html" class="sidebar-logout"> Cerrar sesión</a>
+      </div>
+    </aside>
+
+    <!-- principal -->
+    <main class="main">
+
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Panel de Control</h1>
+          <p class="page-sub">Gestión general del sistema de SportClub</p>
+        </div>
+        <a href="#" class="btn btn-outline" style="font-size:0.85rem;padding:9px 20px;"> Editar perfil</a>
+      </header>
+
+      <!-- estadisticas simplecitas -->
+      <div class="grid-3" style="margin-bottom:20px;" id="reportes">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.4rem;font-weight:700;color:#000000;">524</div>
+          <div style="font-size:0.82rem;color:var(--gray);margin-top:4px;">Total de usuarios</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.4rem;font-weight:700;color:#000000;">12</div>
+          <div style="font-size:0.82rem;color:var(--gray);margin-top:4px;">Coaches activos</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.4rem;font-weight:700;color:#000000;">47</div>
+          <div style="font-size:0.82rem;color:var(--gray);margin-top:4px;">Clases esta semana</div>
+        </div>
+      </div>
+
+      <!-- informacion -->
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="card" style="display:flex;align-items:center;gap:16px;">
+          <div style="font-size:2rem;"></div>
+          <div>
+            <div style="font-weight:700;font-size:0.95rem;">Usuarios activos</div>
+            <div style="font-size:0.82rem;color:var(--gray);">489 de 524 registrados</div>
+          </div>
+        </div>
+        <div class="card" style="display:flex;align-items:center;gap:16px;">
+          <div style="font-size:2rem;"></div>
+          <div>
+            <div style="font-weight:700;font-size:0.95rem;">Clases del día</div>
+            <div style="font-size:0.82rem;color:var(--gray);">8 clases programadas hoy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- gestion de usuarios -->
+      <section class="card" id="usuarios">
+        <h2 class="section-title">Gestión de usuarios</h2>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Admin SportClub</td>
+                <td>admin@sportclub.cl</td>
+                <td><span class=>Admin</span></td>
+                <td><span class=>Activo</span></td>
+              </tr>
+              <tr>
+                <td>Rodrigo Soto</td>
+                <td>rsoto@sportclub.cl</td>
+                <td><span class=>Coach</span></td>
+                <td><span class=>Activo</span></td>
+              </tr>
+              <tr>
+                <td>Ana Pérez</td>
+                <td>aperez@sportclub.cl</td>
+                <td><span class=>Coach</span></td>
+                <td><span class=>Activo</span></td>
+              </tr>
+              <tr>
+                <td>Carlos Muñoz</td>
+                <td>cmunoz@correo.com</td>
+                <td><span class=>Usuario</span></td>
+                <td><span class=>Activo</span></td>
+              </tr>
+              <tr>
+                <td>Valentina Rojas</td>
+                <td>vrojas@correo.com</td>
+                <td><span class=>Usuario</span></td>
+                <td><span class=>Activo</span></td>
+              </tr>
+              <tr>
+                <td>Martín Álvarez</td>
+                <td>malvarez@correo.com</td>
+                <td><span class=>Usuario</span></td>
+                <td><span class=>Inactivo</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>

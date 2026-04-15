@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportClub – Mi Panel</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .sidebar { background: #1A56A0; }
+    .main    { background: #c5b7b7; }
+  </style>
+</head>
+<body>
+
+  <div class="dash-wrapper">
+
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="sidebar-logo-name">SportClub</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#" class="active">Inicio</a></li>
+          <li><a href="#reservas">Reservas</a></li>
+          <li><a href="#clases">Clases</a></li>
+          <li><a href="#perfil">Perfil</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div>
+            <div class="sidebar-name">Marcelo Ortiz</div>
+            <div class="sidebar-role">Miembro</div>
+          </div>
+        </div>
+        <a href="login.html" class="sidebar-logout">Cerrar sesión</a>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">¡Hola, Marcelo!</h1>
+          <p class="page-sub">Bienvenido a tu panel personal</p>
+        </div>
+        <a href="#" class="btn btn-outline" style="font-size:0.85rem;padding:9px 20px;">Editar perfil</a>
+      </header>
+
+      <div class="grid-2" style="margin-bottom:20px;">
+
+        <section class="card">
+          <h2 class="section-title">Información del usuario</h2>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div><strong>Nombre:</strong> Marcelo Ortiz</div>
+            </div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div><strong>Correo:</strong> marcelo.Ortiz@gmail.com</div>
+            </div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div><strong>Deporte favorito:</strong> Crossfit</div>
+            </div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div><strong>Miembro desde:</strong> Enero 2025</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="reservas">
+          <h2 class="section-title">Mis reservas</h2>
+          <div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Clase de Crossfit</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Lunes – 18:00 hrs · Sala A</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Yoga Matutino</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Martes – 08:00 hrs · Sala B</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Funcional Intenso</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Jueves – 19:00 hrs · Sala A</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Spinning</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Viernes – 17:30 hrs · Sala C</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="card" id="clases" style="margin-bottom:20px;">
+        <h2 class="section-title">Clases disponibles</h2>
+        <div class="grid-3">
+          <div style="background:var(--bg);border-radius:10px;border:1px solid var(--border);padding:18px;">
+            <div style="font-weight:700;font-size:0.92rem;margin-bottom:4px;">Crossfit</div>
+            <div style="font-size:0.8rem;color:var(--gray);">Lun / Mié / Vie · 07:00 y 18:00 hrs</div>
+          </div>
+          <div style="background:var(--bg);border-radius:10px;border:1px solid var(--border);padding:18px;">
+            <div style="font-weight:700;font-size:0.92rem;margin-bottom:4px;">Yoga</div>
+            <div style="font-size:0.8rem;color:var(--gray);">Mar / Jue · 08:00 y 19:00 hrs</div>
+          </div>
+          <div style="background:var(--bg);border-radius:10px;border:1px solid var(--border);padding:18px;">
+            <div style="font-weight:700;font-size:0.92rem;margin-bottom:4px;">Spinning</div>
+            <div style="font-size:0.8rem;color:var(--gray);">Lun / Mié · 06:30 y 17:30 hrs</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="perfil">
+        <h2 class="section-title">Mi perfil</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="list-item">
+            <div class="list-dot"></div>
+            <div><strong>Nombre:</strong> Marcelo Ortiz</div>
+          </div>
+          <div class="list-item">
+            <div class="list-dot"></div>
+            <div><strong>Correo:</strong> marcelo.Ortiz@gmail.com</div>
+          </div>
+          <div class="list-item">
+            <div class="list-dot"></div>
+            <div><strong>Objetivos personales:</strong> Mejorar resistencia y bajar de peso</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>
