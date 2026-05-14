@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportClub – Panel Coach</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .sidebar { background: #166534; }
+    .main    { background: #c5b7b7; }
+  </style>
+</head>
+<body>
+
+  <div class="dash-wrapper">
+
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="sidebar-logo-name">SportClub</span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#" class="active">Inicio</a></li>
+          <li><a href="#alumnos">Alumnos</a></li>
+          <li><a href="#clases">Clases</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div>
+            <div class="sidebar-name">Rodrigo Soto</div>
+            <div class="sidebar-role">Coach</div>
+          </div>
+        </div>
+        <a href="login.html" class="sidebar-logout">Cerrar sesión</a>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Panel del Coach</h1>
+          <p class="page-sub">Rodrigo Soto · Crossfit y Funcional</p>
+        </div>
+        <a href="#" class="btn btn-outline" style="font-size:0.85rem;padding:9px 20px;">Editar perfil</a>
+      </header>
+
+      <div class="grid-2" style="margin-bottom:20px;">
+
+        <section class="card" id="alumnos">
+          <h2 class="section-title">Lista de alumnos</h2>
+          <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Disciplina</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Carlos Muñoz</td>
+                  <td>cmunoz@correo.com</td>
+                  <td>Crossfit</td>
+                </tr>
+                <tr>
+                  <td>Valentina Rojas</td>
+                  <td>vrojas@correo.com</td>
+                  <td>Funcional</td>
+                </tr>
+                <tr>
+                  <td>Martín Álvarez</td>
+                  <td>malvarez@correo.com</td>
+                  <td>Crossfit</td>
+                </tr>
+                <tr>
+                  <td>Sofía Guerrero</td>
+                  <td>sguerrero@correo.com</td>
+                  <td>Funcional</td>
+                </tr>
+                <tr>
+                  <td>Juan Paredes</td>
+                  <td>jparedes@correo.com</td>
+                  <td>Crossfit</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card" id="clases">
+          <h2 class="section-title">Clases asignadas</h2>
+          <div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Crossfit Matutino</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Lun / Mié / Vie – 07:00 hrs · Sala A</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Crossfit Vespertino</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Lun / Mié / Vie – 18:00 hrs · Sala A</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Entrenamiento Funcional</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Mar / Jue – 19:00 hrs · Sala B</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section class="card">
+        <h2 class="section-title">Mis horarios de la semana</h2>
+        <div class="grid-2">
+          <div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Lunes – 07:00 hrs</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Crossfit Matutino · Sala A</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Lunes – 18:00 hrs</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Crossfit Vespertino · Sala A</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Martes – 19:00 hrs</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Funcional · Sala B</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Miércoles – 07:00 hrs</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Crossfit Matutino · Sala A</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Jueves – 19:00 hrs</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Funcional · Sala B</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-dot"></div>
+              <div>
+                <div style="font-weight:600;font-size:0.88rem;">Viernes – 18:00 hrs</div>
+                <div style="font-size:0.78rem;color:var(--gray);">Crossfit Vespertino · Sala A</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>

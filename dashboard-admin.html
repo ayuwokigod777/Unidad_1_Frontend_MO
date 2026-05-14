@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SportClub – Administrador</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .sidebar { background: #7C2D12; }
+    .main    { background: #c5b7b7; }
+
+    .btn-blue   { background: #1A56A0; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.82rem; font-weight: 600; }
+    .btn-red    { background: #dc2626; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.82rem; font-weight: 600; }
+    .btn-green  { background: #166534; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.82rem; font-weight: 600; }
+
+    .badge-user  { background: #dcfce7; color: #166534; padding: 3px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
+    .badge-coach { background: #dbeafe; color: #1e40af; padding: 3px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
+    .badge-admin { background: #fee2e2; color: #991b1b; padding: 3px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
+
+    .input-error { border-color: #dc2626 !important; }
+    .error-msg   { color: #dc2626; font-size: 0.75rem; margin-top: 4px; display: none; }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      width: 100%;
+      max-width: 480px;
+    }
+    .modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; }
+    .modal-form { display: flex; flex-direction: column; gap: 14px; }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
+
+    .feedback {
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: none;
+      margin-bottom: 16px;
+    }
+    .feedback.success { background: #dcfce7; color: #166534; display: block; }
+    .feedback.error   { background: #fee2e2; color: #991b1b; display: block; }
+  </style>
+</head>
+<body>
+
+  <div class="dash-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="sidebar-logo-name">SportClub</span>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#" class="active">Inicio</a></li>
+          <li><a href="#usuarios">Usuarios</a></li>
+          <li><a href="#reportes">Reportes</a></li>
+          <li><a href="#configuracion">Configuración</a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div>
+            <div class="sidebar-name" id="adminName">Admin</div>
+            <div class="sidebar-role">Administrador</div>
+          </div>
+        </div>
+        <a href="login.html" class="sidebar-logout" onclick="logout()">Cerrar sesión</a>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <header class="page-header">
+        <div>
+          <h1 class="page-title">Panel de Control</h1>
+          <p class="page-sub">Gestión general del sistema · SportClub</p>
+        </div>
+        <a href="#" class="btn btn-outline" style="font-size:0.85rem;padding:9px 20px;">Editar perfil</a>
+      </header>
+
+      <!-- ESTADÍSTICAS -->
+      <div class="grid-3" style="margin-bottom:20px;" id="reportes">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.4rem;font-weight:700;color:#7C2D12;" id="totalUsuarios">–</div>
+          <div style="font-size:0.82rem;color:var(--gray);margin-top:4px;">Total de usuarios</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.4rem;font-weight:700;color:#7C2D12;" id="totalCoaches">–</div>
+          <div style="font-size:0.82rem;color:var(--gray);margin-top:4px;">Coaches activos</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:2.4rem;font-weight:700;color:#7C2D12;">47</div>
+          <div style="font-size:0.82rem;color:var(--gray);margin-top:4px;">Clases esta semana</div>
+        </div>
+      </div>
+
+      <!-- CARDS INFORMATIVAS -->
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="card" style="display:flex;align-items:center;gap:16px;">
+          <div style="font-size:2rem;">🟢</div>
+          <div>
+            <div style="font-weight:700;font-size:0.95rem;">Usuarios activos</div>
+            <div style="font-size:0.82rem;color:var(--gray);" id="usuariosActivos">Cargando...</div>
+          </div>
+        </div>
+        <div class="card" style="display:flex;align-items:center;gap:16px;">
+          <div style="font-size:2rem;">🏋️</div>
+          <div>
+            <div style="font-weight:700;font-size:0.95rem;">Clases del día</div>
+            <div style="font-size:0.82rem;color:var(--gray);">8 clases programadas hoy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GESTIÓN DE USUARIOS -->
+      <section class="card" id="usuarios">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+          <div>
+            <h2 class="section-title" style="margin-bottom:2px;">Gestión de usuarios</h2>
+            <p style="font-size:0.82rem;color:var(--gray);">Administra los usuarios del sistema</p>
+          </div>
+          <button class="btn-green" onclick="abrirModalCrear()">+ Nuevo Usuario</button>
+        </div>
+
+        <!-- Feedback -->
+        <div id="feedback" class="feedback"></div>
+
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre completo</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Fecha registro</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <tr><td colspan="6" style="text-align:center;color:var(--gray);padding:20px;">Cargando usuarios...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL CREAR / EDITAR -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h3 id="modalTitle">Nuevo Usuario</h3>
+      <div class="modal-form">
+        <input type="hidden" id="modalUserId" />
+
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" id="modalNombre" placeholder="Nombre completo" />
+          <span class="error-msg" id="err-nombre">El nombre es obligatorio</span>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="modalEmail" placeholder="correo@ejemplo.com" />
+          <span class="error-msg" id="err-email">Email inválido</span>
+        </div>
+
+        <div class="form-group">
+          <label>Rol</label>
+          <select id="modalRol">
+            <option value="user">Usuario</option>
+            <option value="coach">Coach</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="passwordField">
+          <label>Contraseña</label>
+          <input type="password" id="modalPassword" placeholder="Mínimo 8 caracteres" />
+          <span class="error-msg" id="err-password">Mínimo 8 caracteres</span>
+        </div>
+
+        <div class="form-group" id="passwordField2">
+          <label>Confirmar contraseña</label>
+          <input type="password" id="modalPassword2" placeholder="Repite la contraseña" />
+          <span class="error-msg" id="err-password2">Las contraseñas no coinciden</span>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-red" onclick="cerrarModal()">Cancelar</button>
+          <button class="btn-green" onclick="guardarUsuario()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API = "http://localhost:3000";
+
+    function getToken() {
+      return localStorage.getItem("token");
+    }
+
+    function logout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    }
+
+    function mostrarFeedback(msg, tipo) {
+      const el = document.getElementById("feedback");
+      el.textContent = msg;
+      el.className = "feedback " + tipo;
+      setTimeout(() => { el.className = "feedback"; }, 3000);
+    }
+
+    function formatFecha(fecha) {
+      if (!fecha) return "–";
+      const d = new Date(fecha);
+      return d.toLocaleDateString("es-CL");
+    }
+
+    function badgeRol(rol) {
+      if (rol === "admin") return `<span class="badge-admin">admin</span>`;
+      if (rol === "coach") return `<span class="badge-coach">coach</span>`;
+      return `<span class="badge-user">user</span>`;
+    }
+
+    // Cargar nombre admin
+    const userGuardado = JSON.parse(localStorage.getItem("user") || "{}");
+    if (userGuardado.full_name) {
+      document.getElementById("adminName").textContent = userGuardado.full_name;
+    }
+
+    // LISTAR USUARIOS
+    async function cargarUsuarios() {
+      try {
+        const res = await fetch(`${API}/api/users`, {
+          headers: { Authorization: `Bearer ${getToken()}` }
+        });
+        const data = await res.json();
+
+        if (!data.ok) return;
+
+        const users = data.data;
+
+        // Estadísticas
+        document.getElementById("totalUsuarios").textContent = users.length;
+        document.getElementById("totalCoaches").textContent = users.filter(u => u.role === "coach").length;
+        document.getElementById("usuariosActivos").textContent = `${users.length} usuarios registrados`;
+
+        // Tabla
+        const tbody = document.getElementById("usersTableBody");
+        tbody.innerHTML = "";
+
+        users.forEach(user => {
+          tbody.innerHTML += `
+            <tr>
+              <td>${user.id}</td>
+              <td>${user.full_name}</td>
+              <td>${user.email}</td>
+              <td>${badgeRol(user.role)}</td>
+              <td>${formatFecha(user.created_at)}</td>
+              <td style="display:flex;gap:6px;">
+                <button class="btn-blue" onclick="abrirModalEditar(${user.id})">Editar</button>
+                <button class="btn-red" onclick="eliminarUsuario(${user.id})">Eliminar</button>
+              </td>
+            </tr>
+          `;
+        });
+
+      } catch (e) {
+        mostrarFeedback("Error al cargar usuarios", "error");
+      }
+    }
+
+    // MODAL CREAR
+    function abrirModalCrear() {
+      document.getElementById("modalTitle").textContent = "Nuevo Usuario";
+      document.getElementById("modalUserId").value = "";
+      document.getElementById("modalNombre").value = "";
+      document.getElementById("modalEmail").value = "";
+      document.getElementById("modalRol").value = "user";
+      document.getElementById("modalPassword").value = "";
+      document.getElementById("modalPassword2").value = "";
+      document.getElementById("passwordField").style.display = "block";
+      document.getElementById("passwordField2").style.display = "block";
+      document.getElementById("modalOverlay").classList.add("active");
+    }
+
+    // MODAL EDITAR
+    async function abrirModalEditar(id) {
+      try {
+        const res = await fetch(`${API}/api/users/${id}`, {
+          headers: { Authorization: `Bearer ${getToken()}` }
+        });
+        const data = await res.json();
+        const user = data.data;
+
+        document.getElementById("modalTitle").textContent = "Editar Usuario";
+        document.getElementById("modalUserId").value = user.id;
+        document.getElementById("modalNombre").value = user.full_name;
+        document.getElementById("modalEmail").value = user.email;
+        document.getElementById("modalRol").value = user.role;
+        document.getElementById("passwordField").style.display = "none";
+        document.getElementById("passwordField2").style.display = "none";
+        document.getElementById("modalOverlay").classList.add("active");
+
+      } catch (e) {
+        mostrarFeedback("Error al cargar usuario", "error");
+      }
+    }
+
+    function cerrarModal() {
+      document.getElementById("modalOverlay").classList.remove("active");
+    }
+
+    // GUARDAR (CREAR O EDITAR)
+    async function guardarUsuario() {
+      const id       = document.getElementById("modalUserId").value;
+      const nombre   = document.getElementById("modalNombre").value.trim();
+      const email    = document.getElementById("modalEmail").value.trim();
+      const rol      = document.getElementById("modalRol").value;
+      const password = document.getElementById("modalPassword").value.trim();
+      const password2 = document.getElementById("modalPassword2").value.trim();
+
+      // Limpiar errores
+      document.querySelectorAll(".error-msg").forEach(e => e.style.display = "none");
+      document.querySelectorAll(".input-error").forEach(e => e.classList.remove("input-error"));
+
+      let valido = true;
+
+      if (!nombre) {
+        document.getElementById("err-nombre").style.display = "block";
+        document.getElementById("modalNombre").classList.add("input-error");
+        valido = false;
+      }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById("err-email").style.display = "block";
+        document.getElementById("modalEmail").classList.add("input-error");
+        valido = false;
+      }
+      if (!id && password.length < 8) {
+        document.getElementById("err-password").style.display = "block";
+        document.getElementById("modalPassword").classList.add("input-error");
+        valido = false;
+      }
+      if (!id && password !== password2) {
+        document.getElementById("err-password2").style.display = "block";
+        document.getElementById("modalPassword2").classList.add("input-error");
+        valido = false;
+      }
+
+      if (!valido) return;
+
+      try {
+        let res;
+        if (id) {
+          // EDITAR
+          res = await fetch(`${API}/api/users/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${getToken()}` },
+            body: JSON.stringify({ full_name: nombre, email, role: rol })
+          });
+        } else {
+          // CREAR
+          res = await fetch(`${API}/api/users`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${getToken()}` },
+            body: JSON.stringify({ full_name: nombre, email, password, role: rol, must_change_password: false })
+          });
+        }
+
+        const data = await res.json();
+
+        if (data.ok) {
+          cerrarModal();
+          mostrarFeedback(id ? "Usuario actualizado correctamente" : "Usuario creado correctamente", "success");
+          cargarUsuarios();
+        } else {
+          mostrarFeedback(data.message || "Error al guardar", "error");
+        }
+
+      } catch (e) {
+        mostrarFeedback("Error al conectar con el servidor", "error");
+      }
+    }
+
+    // ELIMINAR
+    async function eliminarUsuario(id) {
+      if (!confirm("¿Estás seguro de eliminar este usuario?")) return;
+
+      try {
+        const res = await fetch(`${API}/api/users/${id}`, {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${getToken()}` }
+        });
+        const data = await res.json();
+
+        if (data.ok) {
+          mostrarFeedback("Usuario eliminado correctamente", "success");
+          cargarUsuarios();
+        } else {
+          mostrarFeedback(data.message || "Error al eliminar", "error");
+        }
+
+      } catch (e) {
+        mostrarFeedback("Error al conectar con el servidor", "error");
+      }
+    }
+
+    // Iniciar
+    cargarUsuarios();
+  </script>
+
+</body>
+</html>

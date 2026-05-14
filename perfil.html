@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SportClub – Mi Perfil</title>
+<link rel="stylesheet" href="css/styles.css" />
+<style>
+    .sidebar { background: #1A56A0; }
+    .main    { background: #c5b7b7; }
+
+    .input-error { border-color: #dc2626 !important; }
+    .error-msg   { color: #dc2626; font-size: 0.75rem; margin-top: 4px; display: none; }
+
+    .feedback {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: none;
+    margin-bottom: 16px;
+    }
+    .feedback.success { background: #dcfce7; color: #166534; display: block; }
+    .feedback.error   { background: #fee2e2; color: #991b1b; display: block; }
+
+    .badge-user  { background: #dcfce7; color: #166534; padding: 3px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
+    .badge-coach { background: #dbeafe; color: #1e40af; padding: 3px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
+    .badge-admin { background: #fee2e2; color: #991b1b; padding: 3px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="dash-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+    <div class="sidebar-logo">
+        <span class="sidebar-logo-name">SportClub</span>
+    </div>
+    <nav class="sidebar-nav">
+        <ul>
+        <li><a href="dashboard-usuario.html">Inicio</a></li>
+        <li><a href="#reservas">Reservas</a></li>
+        <li><a href="#clases">Clases</a></li>
+        <li><a href="perfil.html" class="active">Perfil</a></li>
+        </ul>
+    </nav>
+    <div class="sidebar-footer">
+        <div class="sidebar-user">
+        <div>
+            <div class="sidebar-name" id="sidebarNombre">–</div>
+            <div class="sidebar-role" id="sidebarRol">–</div>
+        </div>
+        </div>
+        <a href="login.html" class="sidebar-logout" onclick="logout()">Cerrar sesión</a>
+    </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+
+    <header class="page-header">
+        <div>
+        <h1 class="page-title">Mi Perfil</h1>
+        <p class="page-sub">Gestiona tu información personal</p>
+        </div>
+    </header>
+
+    <div class="grid-2" style="margin-bottom:20px;">
+
+        <!-- INFO ACTUAL -->
+        <section class="card">
+        <h2 class="section-title">Información actual</h2>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+            <div class="list-item">
+            <div class="list-dot"></div>
+            <div><strong>Nombre:</strong> <span id="infoNombre">–</span></div>
+            </div>
+            <div class="list-item">
+            <div class="list-dot"></div>
+            <div><strong>Email:</strong> <span id="infoEmail">–</span></div>
+            </div>
+            <div class="list-item">
+            <div class="list-dot"></div>
+            <div><strong>Rol:</strong> <span id="infoRol">–</span></div>
+            </div>
+            <div class="list-item">
+            <div class="list-dot"></div>
+            <div><strong>Fecha de nacimiento:</strong> <span id="infoFecha">–</span></div>
+            </div>
+        </div>
+        </section>
+
+        <!-- EDITAR PERFIL -->
+        <section class="card">
+        <h2 class="section-title">Editar datos personales</h2>
+
+        <div id="feedbackPerfil" class="feedback"></div>
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+            <div class="form-group">
+            <label>Nombre completo</label>
+            <input type="text" id="editNombre" placeholder="Tu nombre completo" />
+            <span class="error-msg" id="err-nombre">El nombre es obligatorio</span>
+            </div>
+
+            <div class="form-group">
+            <label>Fecha de nacimiento</label>
+            <input type="date" id="editFecha" />
+            </div>
+
+            <div class="form-group">
+            <label>Otros / Metadata</label>
+            <input type="text" id="editMetadata" placeholder="Intereses, habilidades, etc." />
+            </div>
+
+            <button
+            class="btn btn-primary"
+            style="width:100%;text-align:center;"
+            onclick="guardarPerfil()"
+            >
+            Guardar cambios
+            </button>
+        </div>
+        </section>
+    </div>
+
+    <!-- CAMBIAR CONTRASEÑA -->
+    <section class="card">
+        <h2 class="section-title">Cambiar contraseña</h2>
+
+        <div id="feedbackPassword" class="feedback"></div>
+
+        <div class="grid-3" style="margin-top:8px;">
+        <div class="form-group">
+            <label>Contraseña actual</label>
+            <input type="password" id="passActual" placeholder="Tu contraseña actual" />
+            <span class="error-msg" id="err-actual">Campo obligatorio</span>
+        </div>
+        <div class="form-group">
+            <label>Nueva contraseña</label>
+            <input type="password" id="passNueva" placeholder="Mínimo 8 caracteres" />
+            <span class="error-msg" id="err-nueva">Mínimo 8 caracteres</span>
+        </div>
+        <div class="form-group">
+            <label>Confirmar contraseña</label>
+            <input type="password" id="passConfirm" placeholder="Repite la contraseña" />
+            <span class="error-msg" id="err-confirm">Las contraseñas no coinciden</span>
+        </div>
+        </div>
+
+        <button
+        class="btn btn-primary"
+        style="margin-top:16px;"
+        onclick="cambiarPassword()"
+        >
+        Actualizar contraseña
+        </button>
+    </section>
+
+    </main>
+</div>
+
+<script>
+    const API = "http://localhost:3000";
+
+    function getToken() {
+    return localStorage.getItem("token");
+    }
+
+    function logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    }
+
+    function formatFecha(fecha) {
+    if (!fecha) return "–";
+    const d = new Date(fecha);
+    return d.toLocaleDateString("es-CL");
+    }
+
+    function badgeRol(rol) {
+    if (rol === "admin") return `<span class="badge-admin">admin</span>`;
+    if (rol === "coach") return `<span class="badge-coach">coach</span>`;
+    return `<span class="badge-user">user</span>`;
+    }
+
+    function mostrarFeedback(id, msg, tipo) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.className = "feedback " + tipo;
+    setTimeout(() => { el.className = "feedback"; }, 3000);
+    }
+
+    // CARGAR PERFIL DESDE API
+    async function cargarPerfil() {
+    try {
+        const res = await fetch(`${API}/api/auth/me`, {
+        headers: { Authorization: `Bearer ${getToken()}` }
+        });
+        const data = await res.json();
+
+        if (!data.ok) {
+        window.location.href = "login.html";
+        return;
+        }
+
+        const user = data.data;
+
+        // Sidebar
+        document.getElementById("sidebarNombre").textContent = user.full_name;
+        document.getElementById("sidebarRol").textContent = user.role;
+
+        // Info actual
+        document.getElementById("infoNombre").textContent = user.full_name;
+        document.getElementById("infoEmail").textContent = user.email.toLowerCase();
+        document.getElementById("infoRol").innerHTML = badgeRol(user.role);
+        document.getElementById("infoFecha").textContent = formatFecha(user.birth_date);
+
+        // Prellenar formulario
+        document.getElementById("editNombre").value = user.full_name;
+        if (user.birth_date) {
+        document.getElementById("editFecha").value = user.birth_date.split("T")[0];
+        }
+        if (user.metadata) {
+        document.getElementById("editMetadata").value = JSON.stringify(user.metadata);
+        }
+
+    } catch (e) {
+        mostrarFeedback("feedbackPerfil", "Error al cargar perfil", "error");
+    }
+    }
+
+    // GUARDAR PERFIL
+    async function guardarPerfil() {
+    const nombre = document.getElementById("editNombre").value.trim();
+    const fecha  = document.getElementById("editFecha").value;
+    const meta   = document.getElementById("editMetadata").value.trim();
+
+      // Limpiar errores
+    document.getElementById("err-nombre").style.display = "none";
+    document.getElementById("editNombre").classList.remove("input-error");
+
+    if (!nombre) {
+        document.getElementById("err-nombre").style.display = "block";
+        document.getElementById("editNombre").classList.add("input-error");
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API}/api/auth/me`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getToken()}`
+        },
+        body: JSON.stringify({
+            full_name: nombre,
+            birth_date: fecha || null,
+            metadata: meta ? { info: meta } : {}
+        })
+        });
+
+        const data = await res.json();
+
+        if (data.ok) {
+        mostrarFeedback("feedbackPerfil", "Perfil actualizado correctamente", "success");
+        cargarPerfil();
+        } else {
+        mostrarFeedback("feedbackPerfil", data.message || "Error al actualizar", "error");
+        }
+
+    } catch (e) {
+        mostrarFeedback("feedbackPerfil", "Error al conectar con el servidor", "error");
+    }
+    }
+
+    // CAMBIAR CONTRASEÑA
+    async function cambiarPassword() {
+    const actual   = document.getElementById("passActual").value.trim();
+    const nueva    = document.getElementById("passNueva").value.trim();
+    const confirma = document.getElementById("passConfirm").value.trim();
+
+      // Limpiar errores
+    document.querySelectorAll(".error-msg").forEach(e => e.style.display = "none");
+    document.querySelectorAll(".input-error").forEach(e => e.classList.remove("input-error"));
+
+    let valido = true;
+
+    if (!actual) {
+        document.getElementById("err-actual").style.display = "block";
+        document.getElementById("passActual").classList.add("input-error");
+        valido = false;
+    }
+    if (nueva.length < 8) {
+        document.getElementById("err-nueva").style.display = "block";
+        document.getElementById("passNueva").classList.add("input-error");
+        valido = false;
+    }
+    if (nueva !== confirma) {
+        document.getElementById("err-confirm").style.display = "block";
+        document.getElementById("passConfirm").classList.add("input-error");
+        valido = false;
+    }
+
+    if (!valido) return;
+
+    try {
+        const res = await fetch(`${API}/api/auth/me/password`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${getToken()}`
+        },
+        body: JSON.stringify({
+            current_password: actual,
+            new_password: nueva,
+            confirm_password: confirma
+        })
+        });
+
+        const data = await res.json();
+
+        if (data.ok) {
+        mostrarFeedback("feedbackPassword", "Contraseña actualizada correctamente", "success");
+        document.getElementById("passActual").value = "";
+        document.getElementById("passNueva").value = "";
+        document.getElementById("passConfirm").value = "";
+        } else {
+        mostrarFeedback("feedbackPassword", data.message || "Error al cambiar contraseña", "error");
+        }
+
+    } catch (e) {
+        mostrarFeedback("feedbackPassword", "Error al conectar con el servidor", "error");
+    }
+    }
+
+    // Iniciar
+    cargarPerfil();
+</script>
+
+</body>
+</html>
